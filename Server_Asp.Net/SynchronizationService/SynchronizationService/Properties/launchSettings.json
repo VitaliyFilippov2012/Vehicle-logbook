@@ -1,0 +1,30 @@
+﻿{
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false, 
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "https://localhost:23233",
+      "sslPort": 44327
+    }
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": false,
+      "launchUrl": "Service.asmx",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "SynchronizationService": {
+      "commandName": "Project",
+      "launchBrowser": false,
+      "launchUrl": "Service.asmx",
+      "applicationUrl": "https://localhost:23233",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
