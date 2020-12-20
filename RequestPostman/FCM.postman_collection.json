@@ -1,0 +1,731 @@
+{
+	"info": {
+		"_postman_id": "e6af05b1-4728-43c7-82a9-06ac14f614fa",
+		"name": "University",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "RegisterUser",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Token",
+						"value": "{{AuthToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"Password\": \"12qwerty\",\r\n    \"Login\": \"12qwerty\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{env-name}}/auth/user",
+					"host": [
+						"{{env-name}}"
+					],
+					"path": [
+						"auth",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdatePassw",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Token",
+						"type": "text",
+						"value": "{{AuthToken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"Password\": \"qwert123\",\r\n    \"Login\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{env-name}}/auth/updatePassw",
+					"host": [
+						"{{env-name}}"
+					],
+					"path": [
+						"auth",
+						"updatePassw"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BasicAuthenticate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8c4612ac-a74c-4ce4-a1fe-8272209238ed",
+						"exec": [
+							"var jsonData=JSON.parse(responseBody)",
+							"pm.environment.set(\"AuthToken\", jsonData.accessToken);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": " application/json",
+						"type": "text"
+					},
+					{
+						"key": "accept-encoding",
+						"value": " gzip, deflate",
+						"type": "text"
+					},
+					{
+						"key": "accept-language",
+						"value": " en-US,en;q=0.8",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Password\": \"qwert123\",\n\t\"Login\": \"vitaliy.filippov.2012@mail.ru\"\n}"
+				},
+				"url": {
+					"raw": "{{env-name}}/auth/login",
+					"host": [
+						"{{env-name}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetStaticData",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Token",
+						"value": "{{AuthToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{env-name}}/data/getStaticInfo",
+					"host": [
+						"{{env-name}}"
+					],
+					"path": [
+						"data",
+						"getStaticInfo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetCarsByUserId",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Token",
+						"value": "{{AuthToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{env-name}}/cars/userId",
+					"host": [
+						"{{env-name}}"
+					],
+					"path": [
+						"cars",
+						"userId"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllCarEvents",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Token",
+						"value": "{{AuthToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{env-name}}/events/carId/72c1df24-201a-44c8-bd8c-e65f594a4b02",
+					"host": [
+						"{{env-name}}"
+					],
+					"path": [
+						"events",
+						"carId",
+						"72c1df24-201a-44c8-bd8c-e65f594a4b02"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateCarForUser",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Token",
+						"type": "text",
+						"value": "{{AuthToken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"carId\": \"72C1DF24-201A-44C8-BD8C-E65F594A4B01\",\n\t\"typeFuel\": \"AI-95\",\n\t\"typeTransmission\": \"MKP\",\n\t\"mark\": \"Saab\",\n\t\"model\": \"9-5 Aero\",\n\t\"volumeEngine\": 3500,\n\t\"power\": 250,\n\t\"active\": true,\n\t\"vin\": \"12246858920189155\",\n\t\"comment\": null,\n\t\"photo\": null,\n\t\"yearIssue\": 2008\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{env-name}}/car",
+					"host": [
+						"{{env-name}}"
+					],
+					"path": [
+						"car"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ShareCarWithOtherUser",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Token",
+						"type": "text",
+						"value": "{{AuthToken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"typeFuel\": \"AI-95\",\n\t\"typeTransmission\": \"MKP\",\n\t\"mark\": \"Saab\",\n\t\"model\": \"9-5 Aero\",\n\t\"volumeEngine\": 3500,\n\t\"power\": 250,\n\t\"active\": true,\n\t\"vin\": \"12246858920189155\",\n\t\"comment\": null,\n\t\"photo\": null,\n\t\"yearIssue\": 2008\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{env-name}}/car/shareCar/72C1DF24-201A-44C8-BD8C-E65F594A4B02&vitaliy.filippov.2012@mail.ru",
+					"host": [
+						"{{env-name}}"
+					],
+					"path": [
+						"car",
+						"shareCar",
+						"72C1DF24-201A-44C8-BD8C-E65F594A4B02&vitaliy.filippov.2012@mail.ru"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddShareCarByRef",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Token",
+						"type": "text",
+						"value": "{{AuthToken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"typeFuel\": \"AI-95\",\n\t\"typeTransmission\": \"MKP\",\n\t\"mark\": \"Saab\",\n\t\"model\": \"9-5 Aero\",\n\t\"volumeEngine\": 3500,\n\t\"power\": 250,\n\t\"active\": true,\n\t\"vin\": \"12246858920189155\",\n\t\"comment\": null,\n\t\"photo\": null,\n\t\"yearIssue\": 2008\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{env-name}}/fcm/addShareCar",
+					"host": [
+						"{{env-name}}"
+					],
+					"path": [
+						"fcm",
+						"addShareCar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateUserCar",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Token",
+						"type": "text",
+						"value": "{{AuthToken}}"
+					}
+				],
+				"url": {
+					"raw": "{{env-name}}/car",
+					"host": [
+						"{{env-name}}"
+					],
+					"path": [
+						"car"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateUser",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Token",
+						"value": "{{AuthToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"sex\": \"m\",\r\n    \"birthday\": \"2000-02-23T00:00:00\",\r\n    \"name\": \"Vitaly\",\r\n    \"lastname\": \"Filipau\",\r\n    \"patronymic\": \"Leonidovich\",\r\n    \"address\": \"Perekopskay h.22-71\",\r\n    \"phone\": \"+375 (29)895-46-35\",\r\n    \"city\": \"Minsk\",\r\n    \"photo\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{env-name}}/user",
+					"host": [
+						"{{env-name}}"
+					],
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteShareCar",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Token",
+						"type": "text",
+						"value": "{{AuthToken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"typeFuel\": \"AI-95\",\n\t\"typeTransmission\": \"MKP\",\n\t\"mark\": \"Saab\",\n\t\"model\": \"9-5 Aero\",\n\t\"volumeEngine\": 3500,\n\t\"power\": 250,\n\t\"active\": true,\n\t\"vin\": \"12246858920189155\",\n\t\"comment\": null,\n\t\"photo\": null,\n\t\"yearIssue\": 2008\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{env-name}}/fcm/deleteShareCar/72C1DF24-201A-44C8-BD8C-E65F594A4B02",
+					"host": [
+						"{{env-name}}"
+					],
+					"path": [
+						"fcm",
+						"deleteShareCar",
+						"72C1DF24-201A-44C8-BD8C-E65F594A4B02"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteEvent",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Token",
+						"type": "text",
+						"value": "{{AuthToken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{env-name}}/event/D7FDA58C-D52C-4F44-9F6B-0550776CF68C",
+					"host": [
+						"{{env-name}}"
+					],
+					"path": [
+						"event",
+						"D7FDA58C-D52C-4F44-9F6B-0550776CF68C"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetCarEventById",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Token",
+						"value": "{{AuthToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{env-name}}/event/23c1df24-201a-44c8-bd8c-e65f594a4b11",
+					"host": [
+						"{{env-name}}"
+					],
+					"path": [
+						"event",
+						"23c1df24-201a-44c8-bd8c-e65f594a4b11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateCarEvent",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Token",
+						"type": "text",
+						"value": "{{AuthToken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"eventId\": \"23c1df24-201a-44c8-bd8c-e65f594a4b11\",\r\n    \"idTypeEvents\": \"A1BDE902-B012-4B2E-B631-95B19C8EF795\",\r\n    \"idUser\": \"487ef3b4-077e-49d6-bf46-f9769339dae5\",\r\n    \"idCar\": \"72c1df24-201a-44c8-bd8c-e65f594a4b02\",\r\n    \"date\": \"2000-02-02T00:00:00\",\r\n    \"costs\": 244.0000,\r\n    \"unitPrice\": 22.0000,\r\n    \"comment\": \"dsdf\",\r\n    \"mileage\": 23423423,\r\n    \"photo\": null,\r\n    \"addressStation\": \"sd\",\r\n    \"idTypeEventsNavigation\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{env-name}}/create/event",
+					"host": [
+						"{{env-name}}"
+					],
+					"path": [
+						"create",
+						"event"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateCarEvent",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Token",
+						"type": "text",
+						"value": "{{AuthToken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"eventId\": \"23c1df24-201a-44c8-bd8c-e65f594a4b11\",\r\n    \"idTypeEvents\": \"A1BDE902-B012-4B2E-B631-95B19C8EF795\",\r\n    \"idUser\": \"487ef3b4-077e-49d6-bf46-f9769339dae5\",\r\n    \"idCar\": \"72c1df24-201a-44c8-bd8c-e65f594a4b02\",\r\n    \"date\": \"2000-02-02T00:00:00\",\r\n    \"costs\": 22.0000,\r\n    \"unitPrice\": 22.0000,\r\n    \"comment\": \"dsdf\",\r\n    \"mileage\": 23423423,\r\n    \"photo\": null,\r\n    \"addressStation\": \"sd\",\r\n    \"idTypeEventsNavigation\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{env-name}}/update/event",
+					"host": [
+						"{{env-name}}"
+					],
+					"path": [
+						"update",
+						"event"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetCarServcieEventById",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Token",
+						"value": "{{AuthToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{env-name}}/service/56c1df24-201a-44c8-bd8c-e65f594a4b55",
+					"host": [
+						"{{env-name}}"
+					],
+					"path": [
+						"service",
+						"56c1df24-201a-44c8-bd8c-e65f594a4b55"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateCarServcieEvent",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Token",
+						"type": "text",
+						"value": "{{AuthToken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"serviceId\": \"33c5df64-201a-44c8-bd8c-565f594a4b12\",\r\n    \"idTypeService\": \"2a9e238c-9dad-4771-8c01-953bdf792644\",\r\n    \"name\": \"Test\",\r\n    \"details\": [\r\n    \t{\r\n        \t\"detailId\": \"12c1df45-201a-44c8-bd8c-543f594a4b12\",\r\n        \t\"idCar\": \"72c1df24-201a-44c8-bd8c-e65f594a4b02\",\r\n        \t\"idService\": \"33c5df64-201a-44c8-bd8c-565f594a4b12\",\r\n        \t\"name\": \"ddgfdfg\",\r\n        \t\"type\": \"dfgdf\"\r\n        },\r\n        {\r\n        \t\"detailId\": \"22c1df66-201a-44c8-bd8c-588f594a4b12\",\r\n        \t\"idCar\": \"72c1df24-201a-44c8-bd8c-e65f594a4b02\",\r\n        \t\"idService\": \"33c5df64-201a-44c8-bd8c-565f594a4b12\",\r\n        \t\"name\": \"sdgsdf\",\r\n        \t\"type\": \"sdfsdf\"\r\n        }\r\n    ],\r\n    \"eventId\": \"23c4df24-201a-44c8-bd8c-e65f594a4b55\",\r\n    \"idTypeEvents\": \"6771dfdb-b42d-4538-87c6-9ed9af792a60\",\r\n    \"idUser\": \"487ef3b4-077e-49d6-bf46-f9769339dae5\",\r\n    \"idCar\": \"72c1df24-201a-44c8-bd8c-e65f594a4b02\",\r\n    \"date\": \"2020-04-25T00:00:00\",\r\n    \"costs\": 525.0000,\r\n    \"unitPrice\": 25.0000,\r\n    \"comment\": \"sdfdsf\",\r\n    \"mileage\": 5645236,\r\n    \"photo\": null,\r\n    \"addressStation\": \"orsha\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{env-name}}/create/service",
+					"host": [
+						"{{env-name}}"
+					],
+					"path": [
+						"create",
+						"service"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateCarServcieEvent",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Token",
+						"type": "text",
+						"value": "{{AuthToken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"serviceId\": \"33c5df64-201a-44c8-bd8c-565f594a4b12\",\r\n    \"idTypeService\": \"2a9e238c-9dad-4771-8c01-953bdf792644\",\r\n    \"name\": \"Test\",\r\n    \"details\": [\r\n    \t{\r\n        \t\"detailId\": \"12c1df45-201a-44c8-bd8c-543f594a4b12\",\r\n        \t\"idCar\": \"72c1df24-201a-44c8-bd8c-e65f594a4b02\",\r\n        \t\"idService\": \"33c5df64-201a-44c8-bd8c-565f594a4b12\",\r\n        \t\"name\": \"456\",\r\n        \t\"type\": \"456\"\r\n        },\r\n        {\r\n        \t\"detailId\": \"22c1df66-201a-44c8-bd8c-588f594a4b12\",\r\n        \t\"idCar\": \"72c1df24-201a-44c8-bd8c-e65f594a4b02\",\r\n        \t\"idService\": \"33c5df64-201a-44c8-bd8c-565f594a4b12\",\r\n        \t\"name\": \"546\",\r\n        \t\"type\": \"dgfhd\"\r\n        }\r\n    ],\r\n    \"eventId\": \"23c4df24-201a-44c8-bd8c-e65f594a4b55\",\r\n    \"idTypeEvents\": \"6771dfdb-b42d-4538-87c6-9ed9af792a60\",\r\n    \"idUser\": \"487ef3b4-077e-49d6-bf46-f9769339dae5\",\r\n    \"idCar\": \"72c1df24-201a-44c8-bd8c-e65f594a4b02\",\r\n    \"date\": \"2020-04-25T00:00:00\",\r\n    \"costs\": 5625.0000,\r\n    \"unitPrice\": 255.0000,\r\n    \"comment\": \"sdfdsf\",\r\n    \"mileage\": 5645236,\r\n    \"photo\": null,\r\n    \"addressStation\": \"orsha\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{env-name}}/update/service",
+					"host": [
+						"{{env-name}}"
+					],
+					"path": [
+						"update",
+						"service"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetCarFuelById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{env-name}}/fuel/90c1df24-201a-44c8-bd8c-e65f594a4b11",
+					"host": [
+						"{{env-name}}"
+					],
+					"path": [
+						"fuel",
+						"90c1df24-201a-44c8-bd8c-e65f594a4b11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateCarFuelEvent",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fuelId\": \"92c1df24-201a-44c8-bd8c-e65f584a4b11\",\r\n    \"volume\": 100.0,\r\n    \"eventId\": \"90c1df24-201a-44c8-bd8c-e65f594a4b11\",\r\n    \"idTypeEvents\": \"e3581151-870d-4ea4-9d34-9756ffd87f84\",\r\n    \"idUser\": \"487ef3b4-077e-49d6-bf46-f9769339dae5\",\r\n    \"idCar\": \"72c1df24-201a-44c8-bd8c-e65f594a4b02\",\r\n    \"date\": \"2000-02-06T00:00:00\",\r\n    \"costs\": 23400.0000,\r\n    \"unitPrice\": 234.0000,\r\n    \"comment\": \"dsfgsdfg\",\r\n    \"mileage\": 23423423,\r\n    \"photo\": null,\r\n    \"addressStation\": \"orsha\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{env-name}}/create/fuel",
+					"host": [
+						"{{env-name}}"
+					],
+					"path": [
+						"create",
+						"fuel"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateCarFuelEvent",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fuelId\": \"92c1df24-201a-44c8-bd8c-e65f584a4b11\",\r\n    \"volume\": 120.0,\r\n    \"eventId\": \"90c1df24-201a-44c8-bd8c-e65f594a4b11\",\r\n    \"idTypeEvents\": \"e3581151-870d-4ea4-9d34-9756ffd87f84\",\r\n    \"idUser\": \"487ef3b4-077e-49d6-bf46-f9769339dae5\",\r\n    \"idCar\": \"72c1df24-201a-44c8-bd8c-e65f594a4b02\",\r\n    \"date\": \"2000-02-06T00:00:00\",\r\n    \"costs\": 25400.0000,\r\n    \"unitPrice\": 234.0000,\r\n    \"comment\": \"dsfgsdfg\",\r\n    \"mileage\": 23423423,\r\n    \"photo\": null,\r\n    \"addressStation\": \"orsha\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{env-name}}/update/fuel",
+					"host": [
+						"{{env-name}}"
+					],
+					"path": [
+						"update",
+						"fuel"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetCarById",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Token",
+						"value": "{{AuthToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{env-name}}/car/72C1DF24-201A-44C8-BD8C-E65F594A4B02",
+					"host": [
+						"{{env-name}}"
+					],
+					"path": [
+						"car",
+						"72C1DF24-201A-44C8-BD8C-E65F594A4B02"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
